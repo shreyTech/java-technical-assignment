@@ -4,6 +4,7 @@ import kata.supermarket.Item;
 import kata.supermarket.discount.type.BuyOneGetOneDiscount;
 import kata.supermarket.discount.type.Discount;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,11 +19,11 @@ class GenericDiscountProcessor implements DiscountProcessor {
     private List<Discount> discounts = Arrays.asList(new BuyOneGetOneDiscount());
 
     @Override
-    public int calculateDiscount(List<Item> products) {
+    public BigDecimal calculateDiscount(List<Item> products) {
 
-        int totalDiscount = 0;
+        BigDecimal totalDiscount = BigDecimal.ZERO;
         for (Discount discount : discounts) {
-            totalDiscount = totalDiscount + discount.calculate(products);
+            totalDiscount = totalDiscount.add(discount.calculate(products));
         }
         return totalDiscount;
     }

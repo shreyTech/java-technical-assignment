@@ -2,24 +2,25 @@ package kata.supermarket.discount.type;
 
 import kata.supermarket.Item;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
  * Base class for defining a template for processing discounts;
  */
-public abstract class Discount {
+public abstract class Discount<T> {
 
-    private static final Integer ZERO_DISCOUNT = 0;
+    private static final BigDecimal ZERO_DISCOUNT = BigDecimal.ZERO;
 
     /**
      * Implements the basic algorithm for calculating discounts.
      * @param products list of all products in the basket.
      * @return total discount on all products.
      */
-    public int calculateDiscount(List<Item> products) {
+    public BigDecimal calculateDiscount(List<Item> products) {
 
         if (isActive()) {
-            List<Item> eligibleProducts = filter(products);
+            List<T> eligibleProducts = filter(products);
             return calculate(eligibleProducts);
         }
 
@@ -31,7 +32,7 @@ public abstract class Discount {
      * @param eligibleProducts
      * @return total discount on all eligible products.
      */
-    public abstract int calculate(List<Item> eligibleProducts);
+    public abstract BigDecimal calculate(List<T> eligibleProducts);
 
     /**
      * Although there is no requirement to have discounts as active or inactive,
@@ -48,8 +49,6 @@ public abstract class Discount {
      * @param products List of products on which discounts can be applied.
      * @return list of products which are eligible for pricing discount.
      */
-    protected List<Item> filter(List<Item> products) {
-        return products;
-    }
+    abstract protected List<T> filter(List<Item> products);
 
 }
