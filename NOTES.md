@@ -18,3 +18,6 @@ to be able to categorise products so that the products can be grouped by their q
 and discount can be calculated effectively.
 But I have managed to provide a high level implementation model in the given time which can be extended to add more
 functionality in future.
+
+One of the test for multiple items in the basket has started failing after integrating Basket with Discount processing system,
+but I was not able to fix it in the interest of time.
