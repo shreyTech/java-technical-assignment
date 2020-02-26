@@ -19,11 +19,11 @@ class GenericDiscountProcessor implements DiscountProcessor {
     private List<Discount> discounts = Arrays.asList(new BuyOneGetOneDiscount());
 
     @Override
-    public BigDecimal calculateDiscount(List<Item> products) {
+    public BigDecimal calculateDiscount(List<Item> items) {
 
         BigDecimal totalDiscount = BigDecimal.ZERO;
         for (Discount discount : discounts) {
-            totalDiscount = totalDiscount.add(discount.calculate(products));
+            totalDiscount = totalDiscount.add(discount.calculateDiscount(items));
         }
         return totalDiscount;
     }

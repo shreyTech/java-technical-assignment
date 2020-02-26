@@ -14,13 +14,13 @@ public abstract class Discount<T> {
 
     /**
      * Implements the basic algorithm for calculating discounts.
-     * @param products list of all products in the basket.
+     * @param items list of all products in the basket.
      * @return total discount on all products.
      */
-    public BigDecimal calculateDiscount(List<Item> products) {
+    public BigDecimal calculateDiscount(List<Item> items) {
 
         if (isActive()) {
-            List<T> eligibleProducts = filter(products);
+            List<T> eligibleProducts = filter(items);
             return calculate(eligibleProducts);
         }
 
@@ -32,7 +32,7 @@ public abstract class Discount<T> {
      * @param eligibleProducts
      * @return total discount on all eligible products.
      */
-    public abstract BigDecimal calculate(List<T> eligibleProducts);
+    protected abstract BigDecimal calculate(List<T> eligibleProducts);
 
     /**
      * Although there is no requirement to have discounts as active or inactive,
